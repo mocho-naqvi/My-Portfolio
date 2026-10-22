@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: mohsin-portfolio
+    runtime: node
+    plan: free
+    buildCommand: cd client && npm install --include=dev && npm run build && cd ../server && npm install
+    startCommand: cd server && npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGO_URI
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: MAIL_TO
+        sync: false
+      - key: SITE_URL
+        sync: false
+      - key: VITE_GA_ID
+        sync: false
